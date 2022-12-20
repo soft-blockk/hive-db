@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'display.dart';
+import 'package:provider/provider.dart';
+import '../services/provider.dart';
 
 class FormScreen extends StatefulWidget {
   const FormScreen({super.key});
@@ -40,7 +42,9 @@ class _FormScreenState extends State<FormScreen> {
           height: 30,
         ),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            context.read<saving>().addUsers(_contEmail.text, _contName.text);
+          },
           child: Text("Submit"),
           style: ElevatedButton.styleFrom(
               elevation: 7,
@@ -54,8 +58,7 @@ class _FormScreenState extends State<FormScreen> {
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: ((context) =>
-                    Display(name: _contName.text, email: _contEmail.text)),
+                builder: ((context) => Display()),
               ),
             );
           },
